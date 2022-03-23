@@ -12,5 +12,5 @@ export default BlankView;
 
 const Container = styled.View`
   background: #ececec;
-  flex: 1;
+  flex: 1; 
 `;
