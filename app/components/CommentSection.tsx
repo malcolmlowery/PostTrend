@@ -31,14 +31,14 @@ const CommentSection: React.FC<CommentSectionI> = ({
             {comment}
           </CardCommentDescription>
           <View>
+            <TimestampText style={{ fontWeight: '500', fontSize: 13 }}>5m</TimestampText>
             <LikeBtn>
               <Text style={{ fontWeight: '600', fontSize: 13 }}>Like</Text>
             </LikeBtn>
-            <TimestampText style={{ fontWeight: '500', fontSize: 13 }}>5m</TimestampText>
           </View>
         </UserInfo>
       </CardCommentSection>
-      {/* <Divider /> */}
+      <Divider />
     </Container>
   )
 };
@@ -50,9 +50,6 @@ const Container = styled.View`
 
 const CardCommentSection = styled.View`
   background: #f8f8f8; 
-  box-shadow: 0 12px 16px rgba(0,0,0,0.075);
-  border-radius: 16px;
-  margin: 8px 10px;
 `;
 
 const UserInfo = styled.View`
@@ -72,7 +69,7 @@ const CardCommentDescription = styled.Text`
   align-items: center;
   color: #181818;
   flex-direction: row;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.1px;
   line-height: 18px;
 `;

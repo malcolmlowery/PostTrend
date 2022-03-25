@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 export interface PostCardI {
   navigateToUserProfile: () => void
   navigateToPostDetails?: () => void
+  numberOfComments: number
   postOwnerUsername: string
   postImage?: string
   postOwnerProfileImage: string
@@ -16,24 +17,26 @@ export interface PostCardI {
   postCommentUserProfileImage?: string
   postComment?: string
   showCardHeader?: boolean
+  style?: any
 }
 
 const PostCard: React.FC<PostCardI> = ({
-  navigateToUserProfile, 
+  navigateToUserProfile,
   navigateToPostDetails,
+  numberOfComments = 0,
   postOwnerUsername,
   postOwnerProfileImage,
   postImage,
   postDescription,
   postLikeTotal = 0,
-  postCommentTotal = 0,
   postCommentUsername,
   postCommentUserProfileImage,
   postComment,
   showCardHeader = true,
+  style,
 }) => {
   return(
-    <Container>
+    <Container style={style}>
       { showCardHeader &&
         <CardHeader>
           <TouchableOpacity onPress={navigateToUserProfile} style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -66,12 +69,15 @@ const PostCard: React.FC<PostCardI> = ({
       
       <CardActionButtons>
         <TouchableWithoutFeedback onPress={navigateToPostDetails}>
-          <CommentTotalText>{postCommentTotal} Comments</CommentTotalText>
+          <CommentTotalText>{numberOfComments} Comments</CommentTotalText>
         </TouchableWithoutFeedback>
         <Spacer />
-        <LikeBtn>
+        <ActionBtn>
+          <Text>Comment</Text>
+        </ActionBtn>
+        <ActionBtn>
           <Text>Like</Text>
-        </LikeBtn>
+        </ActionBtn>
       </CardActionButtons>
 
       <Divider />
@@ -101,7 +107,6 @@ const Container = styled.View`
   background: #f5f5f5;
   box-shadow: 0 12px 16px rgba(0,0,0,0.075);
   /* border-radius: 6px; */
-  margin-bottom: 8px;
   width: 100%;
 `;
 
@@ -121,6 +126,7 @@ const ProfileImg = styled.Image`
 
 const Username = styled.Text`
   font-weight: 500;
+  font-size: 18px;
   margin-left: 10px;
 `;
 
@@ -138,8 +144,9 @@ const HeaderLikeText = styled.Text`
 const CardDescription = styled.Text`
   color: #1f1f1f;
   font-size: 15px;
-  letter-spacing: 0.1px;
-  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0.13px;
+  line-height: 19.2px;
   padding: 0 16px;
 `;
 
@@ -172,13 +179,13 @@ const CommentTotalText = styled.Text`
   font-size: 13px;
 `;
 
-const LikeBtn = styled.TouchableOpacity`
+const ActionBtn = styled.TouchableOpacity`
   align-items: center;
   background: #5C6BC0;
-  border-radius: 8px;
-  color: white;
-  padding: 8px 0;
-  width: 80px;
+  border-radius: 12px;
+  color: #fff;
+  margin-left: 10px;
+  padding: 10px 30px;
 `;
 
 const CardCommentSection = styled.View`
@@ -208,4 +215,6 @@ const Divider = styled.View`
 
 const Text = styled.Text`
   color: white;
+  font-weight: 500;
+  font-size: 13px;
 `;

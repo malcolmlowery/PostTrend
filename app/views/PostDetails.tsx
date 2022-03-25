@@ -9,6 +9,7 @@ import CommentSection from '../components/CommentSection';
 const PostDetails = ({ navigation, route }: any) => {
   const headerHeight = useHeaderHeight();
   const {
+    numberOfComments,
     postOwnerUsername,
     postOwnerProfileImage,
     postDescription,
@@ -17,7 +18,7 @@ const PostDetails = ({ navigation, route }: any) => {
   
   return(
     <Container>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ paddingTop: headerHeight + 10 }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ paddingTop: headerHeight }}>
         
         <Header>
           <ProfileImage source={{ uri: postOwnerProfileImage }} />
@@ -38,12 +39,14 @@ const PostDetails = ({ navigation, route }: any) => {
 
         <Content>
           <PostCard 
-            showCardHeader={false}
             navigateToUserProfile={() => navigation.push('UserProfile', {})} 
+            numberOfComments={numberOfComments}
             postOwnerUsername={postOwnerUsername}
             postOwnerProfileImage={postOwnerProfileImage}
             postDescription={postDescription}
             postImage={postImage}
+            showCardHeader={false}
+            style={{ marginBottom: 0 }}
           />
 
           <CommentContainer style={{ marginBottom: headerHeight + 50}}>
